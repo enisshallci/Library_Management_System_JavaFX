@@ -1,1 +1,1 @@
-# Library Management System JavaFX
+# Library Management System using JavaFX
