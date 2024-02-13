@@ -1,5 +1,3 @@
-# Library Management System using JavaFX
-
 # JavaFX Desktop Application with MySQL Integration
 
 This project is a desktop application developed using JavaFX for the frontend and MySQL for the backend database. It aims to provide a simple yet comprehensive example of how to create a Java desktop application with a relational database.
