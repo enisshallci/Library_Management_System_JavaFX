@@ -38,4 +38,4 @@ db.password=your_password
 ```
 
 ## Contributors
-<b>Enis Shallci</b>
+<b>[Enis Shallci](https://github.com/your-username)</b>
