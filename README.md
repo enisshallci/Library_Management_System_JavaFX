@@ -34,7 +34,8 @@ Before running this application, ensure you have the following installed:
 # Database connection properties
 db.url=jdbc:mysql://localhost:3306/your_database_name
 db.username=your_username
-db.password=your_password ```
+db.password=your_password
+```
 
 ## Contributors
-This project exists thanks to all the people who contribute. [Enis Shallci]
+<b>Enis Shallci</b>
