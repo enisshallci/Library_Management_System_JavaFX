@@ -15,6 +15,7 @@ Before running this application, ensure you have the following installed:
 
 - Java Development Kit (JDK) 8 or higher
 - MySQL Database Server
+- JavaFX
 - MySQL Connector/J library for Java
 
 ## Setup
