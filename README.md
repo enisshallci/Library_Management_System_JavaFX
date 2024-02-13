@@ -20,4 +20,18 @@ Before running this application, ensure you have the following installed:
 ## Setup
 
 1. Clone this repository to your local machine:
+2. 
+3. Import the project into your preferred Java IDE (e.g., IntelliJ IDEA, Eclipse).
 
+4. Set up your MySQL database:
+- Create a new database.
+- Create necessary tables according to the application's requirements.
+
+4. Configure database connection:
+- Update the `application.properties` file with your database connection details.
+
+```properties
+# Database connection properties
+db.url=jdbc:mysql://localhost:3306/your_database_name
+db.username=your_username
+db.password=your_password
