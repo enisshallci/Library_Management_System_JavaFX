@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox fx:id="box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="400.0" spacing="15.0" style="-fx-background-radius: 15;" styleClass="shadow" stylesheets="@../style/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
+   <children>
+      <ImageView fx:id="bookImage" fitHeight="155.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HarryPotter1.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="185.0" prefWidth="245.0">
+         <children>
+            <Label fx:id="bookName" prefHeight="66.0" prefWidth="246.0" text="Harry Potter and&#10;the Sorcerer's Stone&#10;">
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="authorName" prefHeight="66.0" prefWidth="246.0" text="J. K. Rowling&#10;">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</HBox>
