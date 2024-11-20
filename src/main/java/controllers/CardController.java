@@ -1,15 +1,11 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import models.Book;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CardController {
 
@@ -34,6 +30,7 @@ public class CardController {
         bookImage.setImage(image);
         bookName.setText(book.getName());
         authorName.setText(book.getAuthor());
+
         box.setStyle("-fx-background-color: #" + colors[(colorNumber % 4)] + ";" +
                     "-fx-background-radius: 15;" +
                     "-fx-effect: dropShadown(three-pass-box, rgba(0, 0, 0, 0), 10, 0, 0, 10);");
