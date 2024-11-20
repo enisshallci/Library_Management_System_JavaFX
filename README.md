@@ -13,8 +13,8 @@ This project is a desktop application for managing a library, developed using Ja
 
 Before running this application, ensure you have the following installed:
 
-- Java Development Kit (JDK) 8 or higher
-- JavaFX
+- Java Development Kit (JDK) 17 or higher
+- JavaFX 
 - MySQL Database Server
 - MySQL Connector/J library for Java
 
