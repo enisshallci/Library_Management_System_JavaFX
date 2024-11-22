@@ -40,33 +40,33 @@ public class CardListController implements Initializable {
         List<Book> listBook = new ArrayList<>();
 
         Book book = new Book();
-        book.setName("Harry Potter and \nthe Sorcerer's Stone");
+        book.setBookTitle("Harry Potter and \nthe Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         return listBook;

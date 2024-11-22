@@ -28,8 +28,8 @@ public class CardController {
     public void setData(Book book) {
         Image image = new Image(getClass().getResourceAsStream(book.getImageSrc()));
         bookImage.setImage(image);
-        bookName.setText(book.getName());
-        authorName.setText(book.getAuthor());
+        bookName.setText(book.getBookTitle());
+        authorName.setText(book.getBookAuthor());
 
         box.setStyle("-fx-background-color: #" + colors[(colorNumber % 4)] + ";" +
                     "-fx-background-radius: 15;" +
