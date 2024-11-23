@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import models.Book;
+import models.BookModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class CardListController implements Initializable {
     @FXML
     private HBox cardLayout;
 
-    private List<Book> recentlyAdded;
+    private List<BookModel> recentlyAdded;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,34 +36,34 @@ public class CardListController implements Initializable {
         }
     }
 
-    private List<Book> recentlyAdded() {
-        List<Book> listBook = new ArrayList<>();
+    private List<BookModel> recentlyAdded() {
+        List<BookModel> listBook = new ArrayList<>();
 
-        Book book = new Book();
+        BookModel book = new BookModel();
         book.setBookTitle("Harry Potter and \nthe Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
         book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
+        book = new BookModel();
         book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
         book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
+        book = new BookModel();
         book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
         book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
+        book = new BookModel();
         book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
         book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
+        book = new BookModel();
         book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
         book.setBookAuthor("J.K Rowling");

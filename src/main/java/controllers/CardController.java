@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import models.Book;
+import models.BookModel;
 
 public class CardController {
 
@@ -25,7 +25,7 @@ public class CardController {
 
     private static int colorNumber = 1;
 
-    public void setData(Book book) {
+    public void setData(BookModel book) {
         Image image = new Image(getClass().getResourceAsStream(book.getImageSrc()));
         bookImage.setImage(image);
         bookName.setText(book.getBookTitle());

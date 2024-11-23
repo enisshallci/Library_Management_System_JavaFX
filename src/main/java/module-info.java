@@ -6,5 +6,7 @@ module com.example.library_management_desktopapp {
 
     opens controllers;
     opens service;
+    opens models;
+    opens repositories;
 
 }

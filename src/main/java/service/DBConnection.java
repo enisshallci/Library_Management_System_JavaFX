@@ -7,16 +7,19 @@ public class DBConnection {
 
     private static Connection connection;
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
 
-        if (connection == null || connection.isClosed()) {
-            String url = "jdbc:mysql://localhost:3306/Library_Database";
-            String user = "root";
-            String password = "12345";
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Success");
+        try {
+            if (connection == null || connection.isClosed()) {
+                String url = "jdbc:mysql://localhost:3306/library_db";
+                String user = "root";
+                String password = "12345";
+                connection = DriverManager.getConnection(url, user, password);
+                System.out.println("Success");
+            }
+        } catch(SQLException e) {
+            System.out.println(e);
         }
-
         return connection;
     }
 
