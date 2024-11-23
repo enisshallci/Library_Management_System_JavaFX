@@ -275,11 +275,23 @@
                                        </HBox.margin></ComboBox>
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="60.0" prefWidth="198.0" text=" Num. of Coppies: " textAlignment="CENTER">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
+                              <HBox prefHeight="64.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="62.0" prefWidth="207.0" text="Num of Copies:" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="50.0" prefWidth="50.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                         <Button layoutX="183.0" layoutY="587.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="111.0" text="Delete">
