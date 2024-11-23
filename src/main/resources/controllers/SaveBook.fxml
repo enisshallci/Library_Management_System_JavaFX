@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1277.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MemberController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1277.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SaveBookController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="1200.0" spacing="20.0" styleClass="white-background" stylesheets="@../style/main.css" BorderPane.alignment="CENTER">
          <children>
@@ -289,7 +289,7 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox prefHeight="52.0" prefWidth="203.0" stylesheets="@../style/main.css">
+                                    <ComboBox fx:id="comb" prefHeight="52.0" prefWidth="203.0" promptText="Enter Book Genre" stylesheets="@../style/main.css">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin></ComboBox>

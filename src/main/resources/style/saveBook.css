@@ -3,4 +3,8 @@
     -fx-border-color: #454368;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-} 
+}
+
+.combo-box {
+    -fx-font-size: 18px;
+}
