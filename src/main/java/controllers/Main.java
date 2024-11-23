@@ -13,9 +13,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SaveBook.fxml")));
         primaryStage.setTitle("FIEK Library");
-        primaryStage.setScene(new Scene(root, 1200, 890));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
     }
