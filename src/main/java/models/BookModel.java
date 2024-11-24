@@ -9,15 +9,16 @@ public class BookModel {
     private String bookGenre;
     private int publishedYear;
     private String imgSrc;
+    private int numberOfCopies;
 
-    public BookModel(int id, String bookTitle, String bookAuthor, String bookGenre, int publishedYear, String imgSrc) {
+    public BookModel(int id, String bookTitle, String bookAuthor, String bookGenre, int publishedYear, String imgSrc, int numberOfCopies) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.imageSrc = imageSrc;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
         this.publishedYear = publishedYear;
-        this.imageSrc = imageSrc;
+        this.numberOfCopies = numberOfCopies;
     }
 
     public BookModel() {
@@ -78,5 +79,13 @@ public class BookModel {
 
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
+    }
+
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }

@@ -15,19 +15,13 @@ public class DBConnection {
                 String user = "root";
                 String password = "12345";
                 connection = DriverManager.getConnection(url, user, password);
-                System.out.println("Success");
+
             }
         } catch(SQLException e) {
             System.out.println(e);
         }
         return connection;
     }
-
-//    public static void main(String[] args) throws SQLException {
-//
-//        DBConnection.getConnection();
-//    }
-
 }
 
 

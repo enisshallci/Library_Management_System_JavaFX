@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import models.BookModel;
 import repositories.SaveBookRepository;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SaveBookController implements Initializable {
@@ -27,7 +25,7 @@ public class SaveBookController implements Initializable {
     private TableColumn<BookModel, Integer> availableCopiesColumn;
 
     @FXML
-    private ComboBox comboBox;
+    private ComboBox<String> comboBox;
 
     @FXML
     private TableColumn<BookModel, String> genreColumn;
@@ -46,28 +44,31 @@ public class SaveBookController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         loadTableViewData();
-
-        //____________________________
+        populateGenreComboBox();
     }
 
     private SaveBookRepository saveBookRepository;
 
-    public SaveBookController() {       // Konstruktori
+    public SaveBookController() {
 
         saveBookRepository = new SaveBookRepository();
     }
 
-    public void loadTableViewData() {
+    private void loadTableViewData() {
 
-        List<BookModel> listOfBooks = saveBookRepository.loadTableViewData();
-
-        ObservableList<BookModel> bookModelObservableList = FXCollections.observableArrayList(listOfBooks);
+        ObservableList<BookModel> bookModelObservableList = saveBookRepository.loadTableViewData();;
 
         tableview.setItems(bookModelObservableList);
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("bookGenre"));
         publishedYearColumn.setCellValueFactory(new PropertyValueFactory<>("publishedYear"));
+        numberOfCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfCopies"));
+    }
+
+    private void populateGenreComboBox() {
+
+        comboBox.setItems(saveBookRepository.getAllGenres());
     }
 
 }
