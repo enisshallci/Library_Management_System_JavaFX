@@ -2,6 +2,7 @@ package repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import models.BookModel;
 import service.DBConnection;
 
@@ -65,5 +66,52 @@ public class SaveBookRepository {
 
         return genres;
     }
+
+    //3
+    public boolean insert(BookModel bookModel, int genreId) {
+
+        if (!bookExists(bookModel.getBookTitle())) {
+            String insert = "INSERT INTO BOOK(bookTitle, bookAuthor, bookGenreId, publishedYear, imageSrc, numberOfCopies, available) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            Connection connection = DBConnection.getConnection();
+            try {
+                PreparedStatement statement = connection.prepareStatement(insert);
+                statement.setString(1, bookModel.getBookTitle());
+                statement.setString(2, bookModel.getBookAuthor());
+                statement.setInt(3, genreId);       // Ketu ki pune.
+                statement.setInt(4, bookModel.getPublishedYear());
+                statement.setString(5, bookModel.getImgSrc());
+                statement.setInt(6, bookModel.getNumberOfCopies());
+                statement.setInt(7, bookModel.getAvailable());
+
+                statement.executeUpdate();
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return false;
+    }
+
+    public boolean bookExists(String bookTitle) {
+        String query = "SELECT COUNT(*) FROM book WHERE bookTitle = ?";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, bookTitle);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0; // If count > 0, book exists
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }

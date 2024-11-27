@@ -13,14 +13,19 @@ public class BookModel {
     private int available;
 
     public BookModel(int id, String bookTitle, String bookAuthor, String bookGenre, int publishedYear, String imgSrc, int numberOfCopies) {
+        this(bookTitle, bookAuthor, bookGenre, publishedYear, imgSrc, numberOfCopies);
         this.id = id;
+    }
+
+    public BookModel(String bookTitle, String bookAuthor, String bookGenre, int publishedYear, String imgSrc, int numberOfCopies) {
         this.bookTitle = bookTitle;
-        this.imageSrc = imageSrc;
         this.bookAuthor = bookAuthor;
         this.bookGenre = bookGenre;
         this.publishedYear = publishedYear;
         this.numberOfCopies = numberOfCopies;
+        this.imageSrc = imgSrc;
         this.available = numberOfCopies;
+
     }
 
     public BookModel() {

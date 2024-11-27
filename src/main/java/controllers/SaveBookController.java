@@ -1,20 +1,32 @@
 package controllers;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.BookModel;
+import models.GenreModel;
+import service.GenreService;
 import service.SaveBookService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SaveBookController implements Initializable {
+
+    @FXML
+    private TextField authorField;
+
+    @FXML
+    private TextField numberCopiesField;
+
+    @FXML
+    private TextField publishedYearField;
+
+    @FXML
+    private TextField titleField;
 
     @FXML
     private TableView<BookModel> tableview;
@@ -37,12 +49,26 @@ public class SaveBookController implements Initializable {
     @FXML
     private TableColumn<BookModel, Integer> publishedYearColumn;
 
-
     @FXML
     private TableColumn<BookModel, String> titleColumn;
 
     @FXML
     private Button mainButton;
+
+    @FXML
+    void addBook(ActionEvent event) {
+
+        this.addBook();
+    }
+
+    private final SaveBookService saveBookService;
+    private GenreService genreService;
+
+    public SaveBookController() {
+
+        this.saveBookService = new SaveBookService();
+        this.genreService = new GenreService();
+    }
 
 
     @Override
@@ -52,12 +78,6 @@ public class SaveBookController implements Initializable {
         populateGenreComboBox();
     }
 
-    private final SaveBookService saveBookService;
-
-    public SaveBookController() {
-
-        saveBookService = new SaveBookService();
-    }
 
     private void loadTableViewData() {
 
@@ -76,24 +96,49 @@ public class SaveBookController implements Initializable {
 
         comboBox.setItems(saveBookService.getAllGenres());
     }
-    @FXML
-    private void handleSwitchToMain() {
-////        try {
-////            // Load the MainView.fxml
-////            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-////            Parent mainView = loader.load();
-////
-////            // Get the current stage
-////            Stage stage = (Stage) mainButton.getScene().getWindow();
-////
-////            // Set the new scene
-////            stage.setScene(new Scene(mainView));
-////            stage.show();
-////
-////        } catch (IOException e) {
-////            e.printStackTrace();
-//        }
-        System.out.println("Hamdi");
+
+    private void addBook() {
+
+        String title = titleField.getText();
+        String author = authorField.getText();
+        String genreValue = comboBox.getValue();
+        String publishedYear =publishedYearField.getText();
+        String imageSrc = ".../s.ds";
+        String numberOfCopies = numberCopiesField.getText();
+
+        if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty() || genreValue.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("All fields are required. Please fill in every field before proceeding.");
+            alert.showAndWait();
+            return;
+        }
+
+        GenreModel genreModel = getGenre(genreValue);
+
+        BookModel bookModel = new BookModel(title, author, genreModel.getGenreName(),  Integer.parseInt(publishedYear), imageSrc, Integer.parseInt(numberOfCopies));
+        boolean isAdded = saveBookService.addBook(bookModel);
+
+        if (isAdded) {
+            showAlert("Book added successfully.", Alert.AlertType.INFORMATION);
+        } else {
+            showAlert("Book with this title already exists.", Alert.AlertType.INFORMATION);
+        }
+
+        loadTableViewData();
+    }
+
+    private void showAlert(String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private GenreModel getGenre(String genreName) {
+
+        return genreService.getGenreByName(genreName);
     }
 
 }

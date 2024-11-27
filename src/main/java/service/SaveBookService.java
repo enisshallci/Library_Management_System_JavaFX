@@ -10,7 +10,7 @@ public class SaveBookService {
 
     public SaveBookService() {
 
-        saveBookRepository = new SaveBookRepository();
+        this.saveBookRepository = new SaveBookRepository();
     }
 
 
@@ -25,5 +25,9 @@ public class SaveBookService {
         return saveBookRepository.getAllGenres();
     }
 
+    public boolean addBook(BookModel bookModel) {
+
+        return saveBookRepository.insert(bookModel, 2);
+    }
 
 }
