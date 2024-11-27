@@ -92,10 +92,12 @@ public class SaveBookController implements Initializable {
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
     }
 
+
     private void populateGenreComboBox() {
 
         comboBox.setItems(saveBookService.getAllGenres());
     }
+
 
     private void addBook() {
 
@@ -107,10 +109,7 @@ public class SaveBookController implements Initializable {
         String numberOfCopies = numberCopiesField.getText();
 
         if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty() || genreValue.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("All fields are required. Please fill in every field before proceeding.");
-            alert.showAndWait();
+            showAlert1();
             return;
         }
 
@@ -120,25 +119,33 @@ public class SaveBookController implements Initializable {
         boolean isAdded = saveBookService.addBook(bookModel);
 
         if (isAdded) {
-            showAlert("Book added successfully.", Alert.AlertType.INFORMATION);
+            showAlert2("Book added successfully.", Alert.AlertType.INFORMATION);
         } else {
-            showAlert("Book with this title already exists.", Alert.AlertType.INFORMATION);
+            showAlert2("Book with this title already exists.", Alert.AlertType.INFORMATION);
         }
 
         loadTableViewData();
     }
 
-    private void showAlert(String message, Alert.AlertType type) {
+
+    private GenreModel getGenre(String genreName) {
+
+        return genreService.getGenreByName(genreName);
+    }
+
+    private void showAlert1() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setContentText("All fields are required. Please fill in every field before proceeding.");
+        alert.showAndWait();
+    }
+
+    private void showAlert2(String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    private GenreModel getGenre(String genreName) {
-
-        return genreService.getGenreByName(genreName);
     }
 
 }
