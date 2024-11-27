@@ -63,7 +63,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="59.0" prefWidth="297.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../style/main.css" text="All Books">
+                        <Button fx:id="mainButton" mnemonicParsing="false" onAction="#handleSwitchToMain" prefHeight="43.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../style/main.css" text="All Books">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

@@ -10,6 +10,7 @@ public class BookModel {
     private int publishedYear;
     private String imgSrc;
     private int numberOfCopies;
+    private int available;
 
     public BookModel(int id, String bookTitle, String bookAuthor, String bookGenre, int publishedYear, String imgSrc, int numberOfCopies) {
         this.id = id;
@@ -19,6 +20,7 @@ public class BookModel {
         this.bookGenre = bookGenre;
         this.publishedYear = publishedYear;
         this.numberOfCopies = numberOfCopies;
+        this.available = numberOfCopies;
     }
 
     public BookModel() {
@@ -87,5 +89,13 @@ public class BookModel {
 
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
+    }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 }

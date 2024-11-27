@@ -3,7 +3,10 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import models.BookModel;
 import java.io.IOException;
 import java.net.URL;
@@ -11,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CardListController implements Initializable {
+public class AllBookController implements Initializable {
 
     @FXML
     private HBox cardLayout;
 
     private List<BookModel> recentlyAdded;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,4 +75,6 @@ public class CardListController implements Initializable {
 
         return listBook;
     }
+
+
 }
