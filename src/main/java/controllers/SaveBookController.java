@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import service.GenreService;
 import service.SaveBookService;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class SaveBookController implements Initializable {
@@ -81,9 +83,14 @@ public class SaveBookController implements Initializable {
 
     private void loadTableViewData() {
 
-        ObservableList<BookModel> bookModelObservableList = saveBookService.loadTableViewData();;
+        ObservableList<BookModel> bookModelObservableList = saveBookService.loadTableViewData();
 
-        tableview.setItems(bookModelObservableList);
+        SortedList<BookModel> sortedList = new SortedList<>(bookModelObservableList);
+
+        sortedList.setComparator(Comparator.comparingInt(BookModel::getId));
+
+        tableview.setItems(sortedList);
+
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("bookGenre"));
@@ -104,7 +111,7 @@ public class SaveBookController implements Initializable {
         String title = titleField.getText();
         String author = authorField.getText();
         String genreValue = comboBox.getValue();
-        String publishedYear =publishedYearField.getText();
+        String publishedYear = publishedYearField.getText();
         String imageSrc = ".../s.ds";
         String numberOfCopies = numberCopiesField.getText();
 
@@ -115,8 +122,8 @@ public class SaveBookController implements Initializable {
 
         GenreModel genreModel = getGenre(genreValue);
 
-        BookModel bookModel = new BookModel(title, author, genreModel.getGenreName(),  Integer.parseInt(publishedYear), imageSrc, Integer.parseInt(numberOfCopies));
-        boolean isAdded = saveBookService.addBook(bookModel);
+        BookModel bookModel = new BookModel(title, author, genreModel.getGenreName(), Integer.parseInt(publishedYear), imageSrc, Integer.parseInt(numberOfCopies));
+        boolean isAdded = saveBookService.addBook(bookModel, genreModel.getId());
 
         if (isAdded) {
             showAlert2("Book added successfully.", Alert.AlertType.INFORMATION);
@@ -149,3 +156,5 @@ public class SaveBookController implements Initializable {
     }
 
 }
+
+ //TODO Mundesoja klientit qe te ndryshoje ose shtoje Gender, ose fshij.

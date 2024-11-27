@@ -25,9 +25,9 @@ public class SaveBookService {
         return saveBookRepository.getAllGenres();
     }
 
-    public boolean addBook(BookModel bookModel) {
+    public boolean addBook(BookModel bookModel, int genreId) {
 
-        return saveBookRepository.insert(bookModel, 2);
+        return saveBookRepository.insert(bookModel, genreId);
     }
 
 }
