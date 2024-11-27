@@ -16,6 +16,7 @@ public class MainController extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SaveBook.fxml")));
         primaryStage.setTitle("FIEK Library");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }
