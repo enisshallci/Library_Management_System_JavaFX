@@ -10,13 +10,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.BookModel;
 import models.GenreModel;
 import service.GenreService;
-import service.SaveBookService;
+import service.CrudBookService;
 
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-public class SaveBookController implements Initializable {
+public class CrudBookController implements Initializable {
 
     @FXML
     private TextField authorField;
@@ -63,12 +63,17 @@ public class SaveBookController implements Initializable {
         this.addBook();
     }
 
-    private final SaveBookService saveBookService;
+    @FXML
+    void deleteBook(ActionEvent event) {
+        this.deleteBook();
+    }
+
+    private final CrudBookService crudBookService;
     private GenreService genreService;
 
-    public SaveBookController() {
+    public CrudBookController() {
 
-        this.saveBookService = new SaveBookService();
+        this.crudBookService= new CrudBookService();
         this.genreService = new GenreService();
     }
 
@@ -83,7 +88,7 @@ public class SaveBookController implements Initializable {
 
     private void loadTableViewData() {
 
-        ObservableList<BookModel> bookModelObservableList = saveBookService.loadTableViewData();
+        ObservableList<BookModel> bookModelObservableList = crudBookService.loadTableViewData();
 
         SortedList<BookModel> sortedList = new SortedList<>(bookModelObservableList);
 
@@ -102,7 +107,7 @@ public class SaveBookController implements Initializable {
 
     private void populateGenreComboBox() {
 
-        comboBox.setItems(saveBookService.getAllGenres());
+        comboBox.setItems(crudBookService.getAllGenres());
     }
 
 
@@ -123,12 +128,12 @@ public class SaveBookController implements Initializable {
         GenreModel genreModel = getGenre(genreValue);
 
         BookModel bookModel = new BookModel(title, author, genreModel.getGenreName(), Integer.parseInt(publishedYear), imageSrc, Integer.parseInt(numberOfCopies));
-        boolean isAdded = saveBookService.addBook(bookModel, genreModel.getId());
+        boolean isAdded = crudBookService.addBook(bookModel, genreModel.getId());
 
         if (isAdded) {
             showAlert2("Book added successfully.", Alert.AlertType.INFORMATION);
         } else {
-            showAlert2("Book with this title already exists.", Alert.AlertType.INFORMATION);
+            showAlert2("Book with this title already exists.", Alert.AlertType.WARNING);
         }
 
         loadTableViewData();
@@ -140,14 +145,54 @@ public class SaveBookController implements Initializable {
         return genreService.getGenreByName(genreName);
     }
 
+    private void deleteBook() {
+
+        BookModel selectedBook = tableview.getSelectionModel().getSelectedItem();
+
+        if (selectedBook != null) {
+
+            boolean confirmDelete = showConfirmationDialog("Are you sure you want to delete this book?");
+            if (!confirmDelete) {
+                return;
+            }
+
+            boolean isDeleted = crudBookService.deleteBookById(selectedBook.getId());
+
+            if (isDeleted) {
+
+//                tableview.getItems().remove(selectedBook);
+                showAlert2("Book deleted successfully.", Alert.AlertType.INFORMATION);
+                loadTableViewData();
+            } else {
+                showAlert2("Failed to delete the book.", Alert.AlertType.ERROR);
+            }
+        } else {
+            showAlert2("No book selected to delete", Alert.AlertType.WARNING);
+        }
+    }
+
+    private boolean showConfirmationDialog(String message) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        return alert.showAndWait().filter(response -> response == ButtonType.OK).isPresent();
+    }
+
+
     private void showAlert1() {
+
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setContentText("All fields are required. Please fill in every field before proceeding.");
         alert.showAndWait();
     }
 
+
     private void showAlert2(String message, Alert.AlertType type) {
+
         Alert alert = new Alert(type);
         alert.setTitle("Information");
         alert.setHeaderText(null);
@@ -157,4 +202,4 @@ public class SaveBookController implements Initializable {
 
 }
 
- //TODO Mundesoja klientit qe te ndryshoje ose shtoje Gender, ose fshij.
+ // TODO: Mundesoja klientit qe te ndryshoje ose shtoje Gender, ose fshij.

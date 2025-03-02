@@ -2,7 +2,6 @@ package repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import models.BookModel;
 import service.DBConnection;
 
@@ -11,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SaveBookRepository {
+public class CrudBookRepository {
 
     //1
     public ObservableList<BookModel> loadTableViewData() {
@@ -114,4 +113,24 @@ public class SaveBookRepository {
     }
 
 
+    public boolean deleteBookById(int bookId) {
+        String deleteQuery = "DELETE FROM book WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+            preparedStatement.setInt(1, bookId);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
+
+// TODO: Se pari rregulloje kodin ne ate forme qe kur te e klikon nje rresht ne table view, te mbushen fushat anash.

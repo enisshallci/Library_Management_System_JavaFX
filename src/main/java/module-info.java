@@ -8,5 +8,4 @@ module com.example.library_management_desktopapp {
     opens service;
     opens models;
     opens repositories;
-
 }
