@@ -4,19 +4,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import models.Book;
+import models.BookModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CardListController implements Initializable {
+public class AllBooksController implements Initializable {
 
     @FXML
     private HBox cardLayout;
 
-    private List<Book> recentlyAdded;
+    private List<BookModel> recentlyAdded;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,39 +37,41 @@ public class CardListController implements Initializable {
         }
     }
 
-    private List<Book> recentlyAdded() {
-        List<Book> listBook = new ArrayList<>();
+    private List<BookModel> recentlyAdded() {
+        List<BookModel> listBook = new ArrayList<>();
 
-        Book book = new Book();
-        book.setName("Harry Potter and \nthe Sorcerer's Stone");
+        BookModel book = new BookModel();
+        book.setBookTitle("Harry Potter and \nthe Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book = new BookModel();
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book = new BookModel();
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book = new BookModel();
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
-        book = new Book();
-        book.setName("Harry Potter and the Sorcerer's Stone");
+        book = new BookModel();
+        book.setBookTitle("Harry Potter and the Sorcerer's Stone");
         book.setImageSrc("/images/HarryPotter1.jpg");
-        book.setAuthor("J.K Rowling");
+        book.setBookAuthor("J.K Rowling");
         listBook.add(book);
 
         return listBook;
     }
+
+
 }
