@@ -40,7 +40,7 @@ public class CrudBookController implements Initializable {
     private TableColumn<BookModel, Integer> availableCopiesColumn;
 
     @FXML
-    private ComboBox<String> comboBox;
+    private ComboBox<String> genreComboBox;
 
     @FXML
     private TableColumn<BookModel, String> genreColumn;
@@ -68,6 +68,13 @@ public class CrudBookController implements Initializable {
         this.deleteBook();
     }
 
+    @FXML
+    void updateBook(ActionEvent event) {
+
+        this.updateBook();
+    }
+
+    private BookModel selectedBook;
     private final CrudBookService crudBookService;
     private GenreService genreService;
 
@@ -83,6 +90,12 @@ public class CrudBookController implements Initializable {
 
         loadTableViewData();
         populateGenreComboBox();
+
+        tableview.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                populateFields(newSelection);
+            }
+        });
     }
 
 
@@ -107,7 +120,7 @@ public class CrudBookController implements Initializable {
 
     private void populateGenreComboBox() {
 
-        comboBox.setItems(crudBookService.getAllGenres());
+        genreComboBox.setItems(crudBookService.getAllGenres());
     }
 
 
@@ -115,12 +128,12 @@ public class CrudBookController implements Initializable {
 
         String title = titleField.getText();
         String author = authorField.getText();
-        String genreValue = comboBox.getValue();
+        String genreValue = genreComboBox.getValue();
         String publishedYear = publishedYearField.getText();
         String imageSrc = ".../s.ds";
         String numberOfCopies = numberCopiesField.getText();
 
-        if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty() || genreValue.isEmpty()) {
+        if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty()) {
             showAlert1();
             return;
         }
@@ -169,6 +182,58 @@ public class CrudBookController implements Initializable {
         } else {
             showAlert2("No book selected to delete", Alert.AlertType.WARNING);
         }
+    }
+
+    private void populateFields(BookModel book) {
+
+        selectedBook = book;
+
+        titleField.setText(selectedBook.getBookTitle());
+        authorField.setText(book.getBookAuthor());
+        genreComboBox.setValue(book.getBookGenre());
+        publishedYearField.setText(String.valueOf(book.getPublishedYear()));
+        numberCopiesField.setText(String.valueOf(book.getNumberOfCopies()));
+
+        // Load book image
+//        if (book.getImgSrc() != null && !book.getImgSrc().isEmpty()) {
+//            bookImageView.setImage(new Image(book.getImgSrc()));
+//        }
+    }
+
+    private void updateBook() {
+
+//        BookModel selectedBook = tableview.getSelectionModel().getSelectedItem();
+
+        if (selectedBook != null) {
+
+            String genreValue = genreComboBox.getValue();
+
+            boolean confirmUpdate = showConfirmationDialog("Are you sure you want to update this book?");
+            if (!confirmUpdate) {
+                return;
+            }
+
+            selectedBook.setBookTitle(titleField.getText());
+            selectedBook.setBookAuthor(authorField.getText());
+            selectedBook.setPublishedYear(Integer.parseInt(publishedYearField.getText()));
+            selectedBook.setNumberOfCopies(Integer.parseInt(numberCopiesField.getText()));
+
+            GenreModel genreModel = getGenre(genreValue);
+
+
+            boolean isUpdated = crudBookService.updateBook(selectedBook, genreModel.getId());
+
+            if (isUpdated) {
+//                tableview.getItems().remove(selectedBook);
+                showAlert2("Book updated successfully.", Alert.AlertType.INFORMATION);
+                loadTableViewData();
+            } else {
+                showAlert2("Failed to update the book.", Alert.AlertType.ERROR);
+            }
+        } else {
+            showAlert2("No book selected to update", Alert.AlertType.WARNING);
+        }
+
     }
 
     private boolean showConfirmationDialog(String message) {

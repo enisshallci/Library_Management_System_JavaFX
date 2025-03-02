@@ -35,4 +35,9 @@ public class CrudBookService {
         return crudBookRepository.deleteBookById(id);
     }
 
+    public boolean updateBook(BookModel bookModel, int genreId) {
+
+        return crudBookRepository.updateBook(bookModel, genreId);
+    }
+
 }
