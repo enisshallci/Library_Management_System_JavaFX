@@ -25,7 +25,6 @@ public class BookModel {
         this.numberOfCopies = numberOfCopies;
         this.imageSrc = imgSrc;
         this.available = numberOfCopies;
-
     }
 
     public BookModel() {

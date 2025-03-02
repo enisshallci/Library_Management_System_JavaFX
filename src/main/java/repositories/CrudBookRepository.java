@@ -78,7 +78,7 @@ public class CrudBookRepository {
                 PreparedStatement statement = connection.prepareStatement(insert);
                 statement.setString(1, bookModel.getBookTitle());
                 statement.setString(2, bookModel.getBookAuthor());
-                statement.setInt(3, genreId);       // Ketu ki pune.
+                statement.setInt(3, genreId);
                 statement.setInt(4, bookModel.getPublishedYear());
                 statement.setString(5, bookModel.getImgSrc());
                 statement.setInt(6, bookModel.getNumberOfCopies());
@@ -95,6 +95,7 @@ public class CrudBookRepository {
         return false;
     }
 
+    //3
     public boolean bookExists(String bookTitle) {
         String query = "SELECT COUNT(*) FROM book WHERE bookTitle = ?";
         try (Connection connection = DBConnection.getConnection();
@@ -113,6 +114,7 @@ public class CrudBookRepository {
     }
 
 
+    //4
     public boolean deleteBookById(int bookId) {
         String deleteQuery = "DELETE FROM book WHERE id = ?";
 
@@ -130,6 +132,34 @@ public class CrudBookRepository {
             return false;
         }
     }
+
+    //5
+    public boolean updateBook(BookModel bookModel, int genreId) {
+        String update = "UPDATE BOOK SET bookTitle = ?, bookAuthor = ?, bookGenreId = ?, publishedYear = ?, numberOfCopies = ? WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(update)) {
+
+            preparedStatement.setString(1, bookModel.getBookTitle());
+            preparedStatement.setString(2, bookModel.getBookAuthor());
+            preparedStatement.setInt(3, genreId);
+            preparedStatement.setInt(4, bookModel.getPublishedYear());
+            preparedStatement.setInt(5, bookModel.getNumberOfCopies());
+            preparedStatement.setInt(6, bookModel.getId());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                return true;
+            }
+
+            return false;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }
 

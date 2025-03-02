@@ -13,11 +13,10 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("CrudBook.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
         primaryStage.setTitle("FIEK Library");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 }

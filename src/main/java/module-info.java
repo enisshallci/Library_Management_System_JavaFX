@@ -8,4 +8,5 @@ module com.example.library_management_desktopapp {
     opens service;
     opens models;
     opens repositories;
+    opens controllers.fxml_controller;
 }
