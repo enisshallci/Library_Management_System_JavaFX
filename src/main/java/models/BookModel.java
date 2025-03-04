@@ -4,11 +4,10 @@ public class BookModel {
 
     private int id;
     private String bookTitle;
-    private String imageSrc;
     private String bookAuthor;
     private String bookGenre;
     private int publishedYear;
-    private String imgSrc;
+    private String imageSrc;
     private int numberOfCopies;
     private int available;
 
@@ -77,14 +76,6 @@ public class BookModel {
 
     public void setPublishedYear(int publishedYear) {
         this.publishedYear = publishedYear;
-    }
-
-    public String getImgSrc() {
-        return imgSrc;
-    }
-
-    public void setImgSrc(String imgSrc) {
-        this.imgSrc = imgSrc;
     }
 
     public int getNumberOfCopies() {

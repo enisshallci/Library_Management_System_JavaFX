@@ -31,3 +31,14 @@
     -fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0), 10, 0, 0, 10);
 }
 
+
+.scroll-pane {
+    -fx-padding: 5px;
+}
+
+/* Horizontal Scrollbar */
+.scroll-bar:horizontal {
+    -fx-pref-height: 18px; /* Adjust the height of the horizontal scrollbar */
+}
+
+

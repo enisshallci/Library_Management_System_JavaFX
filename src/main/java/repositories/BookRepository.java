@@ -10,10 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CrudBookRepository {
+public class BookRepository {
+
 
     //1
-    public ObservableList<BookModel> loadTableViewData() {
+    public ObservableList<BookModel> getAllBooks() {
         String query = "SELECT book.id, book.bookTitle, book.bookAuthor, genres.genreName AS bookGenre, book.publishedYear," +
                 "book.imageSrc, book.numberOfCopies FROM book JOIN genres ON book.bookGenreId = genres.id;";
 
@@ -80,7 +81,7 @@ public class CrudBookRepository {
                 statement.setString(2, bookModel.getBookAuthor());
                 statement.setInt(3, genreId);
                 statement.setInt(4, bookModel.getPublishedYear());
-                statement.setString(5, bookModel.getImgSrc());
+                statement.setString(5, bookModel.getImageSrc());
                 statement.setInt(6, bookModel.getNumberOfCopies());
                 statement.setInt(7, bookModel.getAvailable());
 
