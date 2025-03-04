@@ -278,7 +278,4 @@ public class CrudBookController implements Initializable {
         numberCopiesField.clear();
         publishedYearField.clear();
     }
-
 }
-
- // TODO: Mundesoja klientit qe te ndryshoje ose shtoje Gender, ose fshij.
