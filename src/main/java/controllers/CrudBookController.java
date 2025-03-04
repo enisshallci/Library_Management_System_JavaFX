@@ -74,6 +74,12 @@ public class CrudBookController implements Initializable {
         this.updateBook();
     }
 
+    @FXML
+    void clearDetails(ActionEvent event) {
+
+        clearBookDetails();
+    }
+
     private BookModel selectedBook;
     private final BookService crudBookService;
     private GenreService genreService;
@@ -263,6 +269,14 @@ public class CrudBookController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void clearBookDetails() {
+
+        titleField.clear();
+        authorField.clear();
+        numberCopiesField.clear();
+        publishedYearField.clear();
     }
 
 }
