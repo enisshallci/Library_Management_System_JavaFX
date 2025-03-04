@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import models.BookModel;
 
+import java.util.Objects;
+
 public class CardController {
 
     @FXML
@@ -26,7 +28,7 @@ public class CardController {
     private static int colorNumber = 1;
 
     public void setData(BookModel book) {
-        Image image = new Image(getClass().getResourceAsStream(book.getImageSrc()));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(book.getImageSrc())));
         bookImage.setImage(image);
         bookName.setText(book.getBookTitle());
         authorName.setText(book.getBookAuthor());

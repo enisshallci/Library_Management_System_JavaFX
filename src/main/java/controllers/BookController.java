@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.BookModel;
 
+import java.util.Objects;
+
 public class BookController {
 
     @FXML
@@ -19,7 +21,7 @@ public class BookController {
 
     public void setData(BookModel bookModel) {
 
-        Image image = new Image(getClass().getResourceAsStream(bookModel.getImageSrc()));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(bookModel.getImageSrc())));
         bookImage.setImage(image);
         bookName.setText(bookModel.getBookTitle());
         bookAuthor.setText(bookModel.getBookAuthor());
