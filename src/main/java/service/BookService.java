@@ -2,21 +2,21 @@ package service;
 
 import javafx.collections.ObservableList;
 import models.BookModel;
-import repositories.CrudBookRepository;
+import repositories.BookRepository;
 
-public class CrudBookService {
+public class BookService {
 
-    private final CrudBookRepository crudBookRepository;
+    private final BookRepository crudBookRepository;
 
-    public CrudBookService() {
+    public BookService() {
 
-        this.crudBookRepository = new CrudBookRepository();
+        this.crudBookRepository = new BookRepository();
     }
 
 
-    public ObservableList<BookModel> loadTableViewData() {
+    public ObservableList<BookModel> getAllBooks() {
 
-       return crudBookRepository.loadTableViewData();
+       return crudBookRepository.getAllBooks();
     }
 
 

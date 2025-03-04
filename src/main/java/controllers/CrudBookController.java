@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.BookModel;
 import models.GenreModel;
 import service.GenreService;
-import service.CrudBookService;
+import service.BookService;
 
 import java.net.URL;
 import java.util.Comparator;
@@ -75,12 +75,12 @@ public class CrudBookController implements Initializable {
     }
 
     private BookModel selectedBook;
-    private final CrudBookService crudBookService;
+    private final BookService crudBookService;
     private GenreService genreService;
 
     public CrudBookController() {
 
-        this.crudBookService= new CrudBookService();
+        this.crudBookService= new BookService();
         this.genreService = new GenreService();
     }
 
@@ -101,7 +101,7 @@ public class CrudBookController implements Initializable {
 
     private void loadTableViewData() {
 
-        ObservableList<BookModel> bookModelObservableList = crudBookService.loadTableViewData();
+        ObservableList<BookModel> bookModelObservableList = crudBookService.getAllBooks();
 
         SortedList<BookModel> sortedList = new SortedList<>(bookModelObservableList);
 
