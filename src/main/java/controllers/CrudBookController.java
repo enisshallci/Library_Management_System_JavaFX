@@ -1,19 +1,28 @@
 package controllers;
 
+import controllers.fxml_controller.FxmlDocumentController;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import models.BookModel;
 import models.GenreModel;
 import service.GenreService;
 import service.BookService;
 
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.net.URL;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CrudBookController implements Initializable {
@@ -43,6 +52,9 @@ public class CrudBookController implements Initializable {
     private ComboBox<String> genreComboBox;
 
     @FXML
+    private ImageView imageSrc;
+
+    @FXML
     private TableColumn<BookModel, String> genreColumn;
 
     @FXML
@@ -64,6 +76,9 @@ public class CrudBookController implements Initializable {
     }
 
     @FXML
+    private TextField filteredField;
+
+    @FXML
     void deleteBook(ActionEvent event) {
         this.deleteBook();
     }
@@ -75,10 +90,17 @@ public class CrudBookController implements Initializable {
     }
 
     @FXML
+    void uploadImage(ActionEvent event) {
+        this.uploadImage();
+    }
+
+    @FXML
     void clearDetails(ActionEvent event) {
 
         clearBookDetails();
     }
+
+    private String imagePath;
 
     private BookModel selectedBook;
     private final BookService crudBookService;
@@ -96,6 +118,7 @@ public class CrudBookController implements Initializable {
 
         loadTableViewData();
         populateGenreComboBox();
+        filteredData();
 
         tableview.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -113,6 +136,8 @@ public class CrudBookController implements Initializable {
 
         sortedList.setComparator(Comparator.comparingInt(BookModel::getId));
 
+        sortedList.comparatorProperty().bind(tableview.comparatorProperty());
+
         tableview.setItems(sortedList);
 
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
@@ -122,6 +147,42 @@ public class CrudBookController implements Initializable {
         numberOfCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
     }
+
+    public void filteredData() {
+
+        ObservableList<BookModel> dataList = crudBookService.getAllBooks();
+
+        FilteredList<BookModel> filteredList = new FilteredList<>(dataList, b -> true);
+
+        filteredField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(bookModel -> {
+
+                if(newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (bookModel.getBookTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                else if(bookModel.getBookAuthor().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                else
+                    return false;
+            });
+        });
+
+        SortedList<BookModel> sortedList = new SortedList<>(filteredList);
+
+        sortedList.setComparator(Comparator.comparingInt(BookModel::getId));
+
+        sortedList.comparatorProperty().bind(tableview.comparatorProperty());
+
+        tableview.setItems(sortedList);
+    }
+
 
 
     private void populateGenreComboBox() {
@@ -136,7 +197,7 @@ public class CrudBookController implements Initializable {
         String author = authorField.getText();
         String genreValue = genreComboBox.getValue();
         String publishedYear = publishedYearField.getText();
-        String imageSrc = ".../s.ds";
+        String imageSrc = imagePath;
         String numberOfCopies = numberCopiesField.getText();
 
         if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty()) {
@@ -200,10 +261,11 @@ public class CrudBookController implements Initializable {
         publishedYearField.setText(String.valueOf(book.getPublishedYear()));
         numberCopiesField.setText(String.valueOf(book.getNumberOfCopies()));
 
-        // Load book image
-//        if (book.getImgSrc() != null && !book.getImgSrc().isEmpty()) {
-//            bookImageView.setImage(new Image(book.getImgSrc()));
-//        }
+
+        if (book.getImageSrc() != null && !book.getImageSrc().isEmpty()) {
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(book.getImageSrc())));
+            imageSrc.setImage(image);
+        }
     }
 
     private void updateBook() {
@@ -239,8 +301,33 @@ public class CrudBookController implements Initializable {
         } else {
             showAlert2("No book selected to update", Alert.AlertType.WARNING);
         }
-
     }
+
+    private void uploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select an Image");
+
+        // Set the default directory to open
+        File initialDirectory = new File("C:\\Users\\Admin\\Desktop\\Library_Management_DesktopApp\\src\\main\\resources\\images\\covers");
+        if (initialDirectory.exists()) {
+            fileChooser.setInitialDirectory(initialDirectory);
+        }
+
+        // Allow only image files
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp")
+        );
+
+        // Show file chooser
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null) {
+            imagePath = "/images/covers/" + file.getName();
+            Image image = new Image(file.toURI().toString());
+            imageSrc.setImage(image);
+        }
+    }
+
 
     private boolean showConfirmationDialog(String message) {
 
@@ -277,5 +364,7 @@ public class CrudBookController implements Initializable {
         authorField.clear();
         numberCopiesField.clear();
         publishedYearField.clear();
+        genreComboBox.setValue("Enter Book Genre");
+        imageSrc.setImage(null);
     }
 }

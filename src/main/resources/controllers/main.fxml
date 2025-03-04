@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,16 +24,6 @@
                </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="45.0" prefWidth="5.0" />
-            <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="252.0" styleClass="round-layout" stylesheets="@../style/main.css">
-               <children>
-                  <TextField prefHeight="33.0" prefWidth="213.0" promptText="Search" styleClass="transparent" stylesheets="@../style/main.css" />
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Daco_367903.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
             <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="72.0" prefWidth="435.0">
                <children>

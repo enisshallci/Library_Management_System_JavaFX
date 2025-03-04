@@ -164,4 +164,4 @@ public class BookRepository {
 
 }
 
-// TODO: Se pari rregulloje kodin ne ate forme qe kur te e klikon nje rresht ne table view, te mbushen fushat anash.
+// TODO: Update permirsoje edhe per foto.
