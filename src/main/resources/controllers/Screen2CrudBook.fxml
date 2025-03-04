@@ -23,7 +23,7 @@
                <children>
                   <AnchorPane layoutX="327.0" layoutY="29.0" prefHeight="654.0" prefWidth="546.0" stylesheets="@../style/saveBook.css">
                      <children>
-                        <Button layoutX="472.0" layoutY="575.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="51.0" prefWidth="170.0" stylesheets="@../style/main.css" text="Delete Book" textFill="#d70210">
+                        <Button layoutX="363.0" layoutY="575.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="51.0" prefWidth="150.0" stylesheets="@../style/main.css" text="Delete Book" textFill="#d70210">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -36,7 +36,7 @@
                               <String fx:value="white-background" />
                            </styleClass>
                         </Button>
-                        <Button layoutX="255.0" layoutY="575.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="51.0" prefWidth="170.0" stylesheets="@../style/main.css" text="Edit Book" textFill="#d70210">
+                        <Button layoutX="191.0" layoutY="575.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="51.0" prefWidth="150.0" stylesheets="@../style/main.css" text="Edit Book" textFill="#d70210">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -59,7 +59,20 @@
                               <TableColumn fx:id="availableCopiesColumn" prefWidth="116.0" text="AVAILABLE " />
                            </columns>
                         </TableView>
-                        <Button layoutX="38.0" layoutY="575.0" mnemonicParsing="false" onAction="#addBook" prefHeight="51.0" prefWidth="170.0" stylesheets="@../style/main.css" text="Save Book" textFill="#d70210">
+                        <Button layoutX="23.0" layoutY="575.0" mnemonicParsing="false" onAction="#addBook" prefHeight="51.0" prefWidth="150.0" stylesheets="@../style/main.css" text="Save Book" textFill="#d70210">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="round-layout" />
+                              <String fx:value="nav-button" />
+                              <String fx:value="nav-form" />
+                              <String fx:value="shadow" />
+                              <String fx:value="transparent" />
+                              <String fx:value="white-background" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="540.0" layoutY="575.0" mnemonicParsing="false" onAction="#clearDetails" prefHeight="51.0" prefWidth="150.0" stylesheets="@../style/main.css" text="Clear" textFill="#d70210">
                            <font>
                               <Font size="24.0" />
                            </font>
