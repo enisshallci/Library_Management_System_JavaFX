@@ -17,6 +17,7 @@ Before running this application, ensure you have the following installed:
 - javafx-sdk-21.0.5
 - MySQL Database Server
 - MySQL Connector/J library for Java
+
 (Ensure you have the appropriate JavaFX SDK installed e.g., javafx-sdk-21.0.5 or the version that matches your project setup).
 
 ## Setup
