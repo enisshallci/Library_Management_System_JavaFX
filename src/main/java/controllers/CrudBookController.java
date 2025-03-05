@@ -200,7 +200,7 @@ public class CrudBookController implements Initializable {
         String imageSrc = imagePath;
         String numberOfCopies = numberCopiesField.getText();
 
-        if (title.isEmpty() || author.isEmpty() || genreValue.isEmpty() || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty()) {
+        if (title.isEmpty() || author.isEmpty() || genreValue == null || publishedYear.isEmpty() /*|| imageSrc.isEmpty()*/ || numberOfCopies.isEmpty()) {
             showAlert1();
             return;
         }
