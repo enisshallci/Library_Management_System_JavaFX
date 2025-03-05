@@ -36,9 +36,12 @@
     -fx-padding: 5px;
 }
 
-/* Horizontal Scrollbar */
 .scroll-bar:horizontal {
-    -fx-pref-height: 18px; /* Adjust the height of the horizontal scrollbar */
+    -fx-pref-height: 18px;
+}
+
+.combo-box {
+    -fx-font-size: 14px;
 }
 
 
