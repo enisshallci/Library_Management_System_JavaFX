@@ -33,4 +33,14 @@ public class MemberService {
 
         return memberRepository.updateMember(memberModel);
     }
+
+    public int getMaleMemberCount() {
+
+        return memberRepository.countMale();
+    }
+
+    public int getFemaleMemberCount() {
+
+        return memberRepository.countFemale();
+    }
 }

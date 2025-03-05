@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -33,7 +34,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="firstNameField" layoutX="154.0" layoutY="11.0" prefHeight="50.0" prefWidth="202.0" promptText="Enter FirstName">
+            <TextField fx:id="firstNameField" layoutX="154.0" layoutY="11.0" prefHeight="50.0" prefWidth="226.0" promptText="Enter FirstName">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,7 +44,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="lastNameField" layoutX="154.0" layoutY="78.0" prefHeight="50.0" prefWidth="202.0" promptText="Enter LastName">
+            <TextField fx:id="lastNameField" layoutX="154.0" layoutY="78.0" prefHeight="50.0" prefWidth="220.0" promptText="Enter LastName">
                <font>
                   <Font size="18.0" />
                </font>
@@ -53,7 +54,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="emailField" layoutX="154.0" layoutY="210.0" prefHeight="50.0" prefWidth="202.0" promptText="Enter Email">
+            <TextField fx:id="emailField" layoutX="154.0" layoutY="210.0" prefHeight="50.0" prefWidth="226.0" promptText="Enter Email">
                <font>
                   <Font size="18.0" />
                </font>
@@ -63,7 +64,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="phoneNumberField" layoutX="154.0" layoutY="268.0" prefHeight="50.0" prefWidth="202.0" promptText="Enter Email">
+            <TextField fx:id="phoneNumberField" layoutX="154.0" layoutY="268.0" prefHeight="50.0" prefWidth="226.0" promptText="Enter Email">
                <font>
                   <Font size="18.0" />
                </font>
@@ -138,5 +139,10 @@
             </ImageView>
          </children>
       </HBox>
+      <AnchorPane layoutX="2.0" layoutY="11.0" prefHeight="325.0" prefWidth="375.0">
+         <children>
+            <PieChart fx:id="pieChart" layoutX="2.0" layoutY="2.0" prefHeight="325.0" prefWidth="382.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
