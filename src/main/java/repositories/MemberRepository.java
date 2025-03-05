@@ -124,6 +124,43 @@ public class MemberRepository {
         }
     }
 
+    //5
+    public int countMale() {
+        String query = "SELECT COUNT(*) AS maleCount FROM members WHERE GENDER = 'M';";
+        int maleCount = 0;
+        Connection connection = DBConnection.getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                maleCount = resultSet.getInt("maleCount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return maleCount;
+    }
+
+    //6
+    public int countFemale() {
+        String query = "SELECT COUNT(*) AS maleCount FROM members WHERE GENDER = 'F';";
+        int femaleCount = 0;
+
+        Connection connection = DBConnection.getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                femaleCount = resultSet.getInt("maleCount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return femaleCount;
+    }
+
 
 //    //3
 //    public boolean memberExists(String bookTitle) {

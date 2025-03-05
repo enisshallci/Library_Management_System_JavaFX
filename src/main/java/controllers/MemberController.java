@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.GenreModel;
@@ -78,6 +80,10 @@ public class MemberController implements Initializable {
         this.updateMember();
     }
 
+    @FXML
+    private PieChart pieChart;
+
+
     private final MemberService memberService;
 
     public MemberController() {
@@ -90,6 +96,7 @@ public class MemberController implements Initializable {
         loadTableViewData();
         this.filteredData();
         genderField.setItems(FXCollections.observableArrayList("M", "F"));
+        setPieChart();
 
         tableview.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -186,6 +193,7 @@ public class MemberController implements Initializable {
         }
 
         loadTableViewData();
+//        setPieChart();
     }
 
     private void deleteMember() {
@@ -226,7 +234,7 @@ public class MemberController implements Initializable {
             selectedMember.setLastName(lastNameField.getText());
             selectedMember.setGender(genderField.getValue().charAt(0));
             selectedMember.setEmail(emailField.getText());
-            selectedMember.setEmail(phoneNumberField.getText());
+            selectedMember.setPhoneNumber(phoneNumberField.getText());
 
             boolean isUpdated = memberService.updateMember(selectedMember);
 
@@ -277,6 +285,22 @@ public class MemberController implements Initializable {
         genderField.setValue(null);
         emailField.clear();
         phoneNumberField.clear();
+    }
+
+    //Pie Chart:
+    private void setPieChart() {
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Male", memberService.getMaleMemberCount()),
+                new PieChart.Data("Female", memberService.getFemaleMemberCount()));
+
+        pieChartData.forEach(data -> data.nameProperty().bind(
+                Bindings.concat(
+                        data.getName(), " amount: ", data.pieValueProperty()
+                ))
+        );
+
+        pieChart.getData().addAll(pieChartData);
     }
 
 }
