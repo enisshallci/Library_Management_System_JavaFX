@@ -10,6 +10,10 @@ public class GenreModel {
         this.genreName = name;
     }
 
+    public GenreModel(String genreName) {
+        this.genreName = genreName;
+    }
+
     public int getId() {
         return id;
     }

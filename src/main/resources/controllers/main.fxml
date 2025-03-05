@@ -119,11 +119,11 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="59.0" prefWidth="297.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../style/main.css" text="Add Book Genre">
+                        <Button mnemonicParsing="false" onAction="#buttonAddGenre" prefHeight="43.0" prefWidth="207.0" styleClass="nav-button" stylesheets="@../style/main.css" text="Add Book Genre">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/add-user-128.png" />
+                                    <Image url="@../images/literature-512.gif" />
                                  </image>
                               </ImageView>
                            </graphic>
